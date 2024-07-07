@@ -11,4 +11,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   theme: {
     logo: "/logo.png",
   },
+  trustHost: true,
+  callbacks: {
+    async session({session, user}) {
+      session.user.role = user.role;
+      return session
+    }
+  }
 });
